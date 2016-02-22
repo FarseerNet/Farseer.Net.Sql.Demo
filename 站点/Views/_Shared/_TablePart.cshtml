@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "/Views/_Shared/_Layout.cshtml.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="@Url.Action("ToList", "Table")">ToList列表 <span class="sr-only">(current)</span></a></li>
+                <li><a href="@Url.Action("ToTable", "Table")">ToTable列表</a></li>
+                <li><a href="@Url.Action("ToEntity", "Table")">ToEntity记录</a></li>
+                <li><a href="@Url.Action("ToSelectList", "Table")">ToSelectList筛选字段</a></li>
+                <li><a href="@Url.Action("GetValue", "Table")">GetValue单值</a></li>
+                <li><a href="@Url.Action("Count", "Table")">Count数量</a></li>
+                <li><a href="@Url.Action("IsHaving", "Table")">IsHaving数据存在</a></li>
+                <li><a href="@Url.Action("Sum", "Table")">Sum和累计</a></li>
+                <li><a href="@Url.Action("Max", "Table")">Max最大值</a></li>
+                <li><a href="@Url.Action("Min", "Table")">Min最小值</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="@Url.Action("Copy", "Table")">Copy复制数据</a></li>
+                <li><a href="@Url.Action("Update", "Table")">Update更新数据</a></li>
+                <li><a href="@Url.Action("Insert", "Table")">Insert插入数据</a></li>
+                <li><a href="@Url.Action("Delete", "Table")">Delete删除数据</a></li>
+                <li><a href="@Url.Action("AddUp", "Table")">AddUp值加减</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            @RenderBody()
+        </div>
+    </div>
+</div>

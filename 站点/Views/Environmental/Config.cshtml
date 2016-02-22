@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "数据库配置";
+    Layout = "~/Views/_Shared/_EnvironmentalPart.cshtml";
+}
+<style>
+    .red { color: red; text-decoration: underline; font-weight: bold; }
+    .blue { color:cornflowerblue; text-decoration: underline; font-weight: bold; }
+    .u { text-decoration: underline; }
+    .s { font-weight: bold; }
+    h1, h2, h3, h4, h5 { font-weight: bold; }
+</style>
+
+<h3 class="page-header">前言</h3>
+<p>Farseer.Net是支持<span class="red">多数据库的ORM</span>，使用者通过<span class="red">配置文件</span>即可切换指定的数据库而不需要修改项目中的任何代码。本篇讲述如何进行数据库环境的配置。同时也讲述其它配置文件的使用。</p>
+
+<h3 class="sub-header">配置文件的路径</h3>
+<p>不管是WebForm、Mvc、WinForm，配置文件统一放在：<span class="red">~/App_Data/</span> 中。请大家劳记这个路径。框架用到的所有配置文件的路径都会放在这里。</p>
+<img src="~/img/Config/1.jpg" />
+<p>配置文件<span class="red">不需要手动创建</span>，框架在运行时，会查找这个目录下的文件，不存在会<span class="red">自动创建它</span>。</p>
+
+<h3 class="sub-header">目前配置文件有</h3>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>管理类</th>
+                <th>名称</th>
+                <th>配置路径</th>
+                <th>项目</th>
+                <th>描述</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>DbConfigs</td>
+                <td>数据库配置</td>
+                <td>Db.Config</td>
+                <td>Farseer.Net</td>
+                <td>数据库环境配置，支持多个数据库的配置</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>SystemConfigs</td>
+                <td>系统配置</td>
+                <td>System.Config</td>
+                <td>Farseer.Net</td>
+                <td>系统环境配置，比如是否生成SQL日志</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>DbExceptionEmailConfigs</td>
+                <td>数据库异常邮件配置</td>
+                <td>DbExceptionEmail.Config</td>
+                <td>Farseer.Net</td>
+                <td>邮件发送配置，当数据库异常时进行邮件通知</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>EmailConfigs</td>
+                <td>邮件配置</td>
+                <td>Email.Config</td>
+                <td>Farseer.Net.Utils</td>
+                <td>邮件发送配置，支持多个邮件的配置</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>WebConfigs</td>
+                <td>网站配置</td>
+                <td>Web.Config</td>
+                <td>Farseer.Net.Utils.Web</td>
+                <td>网站的基础配置，如上传保存的路径、网站Cookies域名称</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>WebRewriterConfigs</td>
+                <td>Url重写配置</td>
+                <td>WebRewriter.Config</td>
+                <td>Farseer.Net.Utils.Web</td>
+                <td>网站URL地址重写配置，支持多个地址配置</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>WebSystemConfigs</td>
+                <td>网站系统配置</td>
+                <td>WebSystem.Config</td>
+                <td>Farseer.Net.Utils.Web</td>
+                <td>网站系统配置，如Session、Cookies的保存时间、前缀等</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3 class="sub-header">配置文件的动态管理</h3>
+<p>以上配置文件的对应管理类，统一放在：命名空间：<span class="red">FS.Configs</span>中。<span class="red">AbsConfigs.cs</span>是所有配置文件的基类，配置文件通过：<span class="red">序列化、反序列</span>化进行持久化管理。（在FS.Utils）</p>
+<p>要修改配置时，只需要手动修改这个路径的<span class="red">物理文件</span>即可。</p>
+<p>在程序中使用时可以通过   <span class="red">类名.ConfigEntity.属性</span>  来获取它们。</p>
+<p>比如读取数据库配置文件的数据库类型的操作是：<span class="blue">DbConfigs.ConfigEntity.DbList[0].DataType</span></p>
+<p><span class="blue">DbConfigs.ConfigEntity</span>得到的是整个数据库配置文件的配置，<span class="blue">DbList[0]</span>是指数据库配置的第1项。（因为一个项目中，数据库有可能是多个的）</p>
+<p>同时我们也可以通过<span class="red">程序修改</span>保存它们：</p>
+<p><span class="blue">DbConfigs.SaveConfig(new DbConfig());</span></p>
+
+<h3 class="sub-header">用一个列表描述所有数据库配置：</h3>
+
+<h3 class="sub-header">配置文件的例子</h3>
+
+<h3 class="sub-header">System.Config系统配置文件</h3>
+
+<h3 class="sub-header">SqlLog.xml日志文件</h3>
